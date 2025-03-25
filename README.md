@@ -1,8 +1,8 @@
-# Saipos Gestor App
+# Saipos Gestor App 
 
-## Descrição
+## Descrição 
 
-O **Saipos Gestor App** é um aplicativo desenvolvido para o **Zendesk Support** com o objetivo de auxiliar os gestores no controle da fila de atendimentos da equipe de suporte da **Saipos Software**.
+O **Saipos Gestor App** é um aplicativo desenvolvido para o **Zendesk Support** com o objetivo de auxiliar os gestores no controle da fila de atendimentos da equipe de suporte da **Saipos Software S.A**.
 
 O Zendesk é uma ferramenta robusta, mas apresenta limitações na gestão ágil da fila de atendimentos. Para suprir essa necessidade, este aplicativo foi criado para otimizar esse processo.
 
@@ -70,6 +70,18 @@ Para instalar o **Saipos Gestor App** no Zendesk Support:
 - Para visualizar as informações da fila, basta clicar no ícone do app.
 - Utilize o botão **"Atribuir ao Gestor"** para puxar os atendimentos com mais de 10 minutos na fila.
 
+## Versão
+
+![Static Badge](https://img.shields.io/badge/Version-SaiposGestor_2.0.0-2d9cdb)
+
+![Static Badge](https://img.shields.io/badge/%C2%A9Copyright-Saipos_Software_S.A-2d9cdb)
+
+## Autores
+
+[@JonathanSilva](https://www.github.com/jnttfreitas) 
+
+
 ## Contribuição
 
 Este aplicativo foi desenvolvido por iniciativa própria para otimizar o fluxo de atendimento na equipe de suporte da **Saipos Software**. Contribuições e sugestões de melhoria são bem-vindas!
+
