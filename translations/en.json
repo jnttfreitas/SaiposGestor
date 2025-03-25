@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "Saipos Gestor",
+    "short_description": "Application for queue control and monitoring.",
+    "long_description": "Application for queue control and monitoring by Saipos service agent managers Software developed to optimize queue lengthening time",
+    "installation_instructions": "Click install and manage it well."
+  }
+}

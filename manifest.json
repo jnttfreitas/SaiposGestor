@@ -1,0 +1,42 @@
+{
+  "name": "Saipos Gestor",
+  "author": {
+    "name": "Jonathan Silva",
+    "email": "jonathan.silva@saipos.com"
+  },
+  "version": "2.0.0",
+  "defaultLocale": "pt-BR",
+  "frameworkVersion": "2.0",
+  "icons": {
+    "26x26": "assets/icon_top_bar.svg",
+    "48x48": "assets/icon_top_bar.svg",
+    "96x96": "assets/icon_top_bar.svg"
+  },
+  "location": {
+    "support": {
+      "top_bar": {
+        "url": "assets/iframe.html"
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "ViewID",
+      "type": "text",
+      "required": true,
+      "placeholder": "Insira o ID da View"
+    },
+    {
+      "name": "Tag",
+      "type": "text",
+      "required": true,
+      "placeholder": "Insira a tag a ser adicionada"
+    },
+    {
+      "name": "ObsInterna",
+      "type": "text",
+      "required": false,
+      "placeholder": "Insira uma observação interna (opcional)"
+    }
+  ]
+}

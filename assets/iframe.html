@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Controle da Fila</h1>
+
+        <!-- Contadores de Tickets -->
+        <div class="ticket-counts">
+            <p>Total de Tickets na Fila: <span id="totalTickets">0</span></p>
+            <p>Tickets há mais de 10 min: <span id="waitingTickets">0</span></p>
+        </div>
+
+        <!-- Seções de Configuração -->
+        <div class="ticket-config">
+            <label for="ticketType">Tipo de Ticket:</label>
+            <select id="ticketType">
+                <option value="">Selecione o tipo</option>
+                <option value="question">Pergunta</option>
+                <option value="incident">Incidente</option>
+                <option value="problem">Problema</option>
+                <option value="task">Tarefa</option>
+            </select>
+
+            <label for="ticketForm">Formulário do Ticket:</label>
+            <select id="ticketForm">
+                <option value="">Selecione o formulário</option>
+                <!-- As opções serão carregadas dinamicamente -->
+            </select>
+
+            <label for="contactReason">Motivo de Contato:</label>
+            <select id="contactReason">
+                <option value="">Selecione o motivo</option>
+                <!-- As opções serão carregadas dinamicamente -->
+            </select>
+
+            <label for="solutionReason">Motivo de Solução:</label>
+            <select id="solutionReason">
+                <option value="">Selecione o motivo</option>
+                <!-- As opções serão carregadas dinamicamente -->
+            </select>
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="action-buttons">
+          <button id="reloadButton">
+            <img src="reload-icon.svg" alt="Recarregar"></button>
+            <button id="assignButton">Atribuir Tickets ao Gestor</button>
+        </div>
+    </div>
+
+    <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

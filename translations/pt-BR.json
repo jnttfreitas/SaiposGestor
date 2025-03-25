@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "Saipos Gestor",
+    "short_description": "Aplicativo para controle e monitoramento de fila.",
+    "long_description": "Aplicativo para controle e monitoramento de fila pelos gestores dos agentes de atendimento da Saipos Software desenvolvido para uma otimização do tempo de aumento de fila",
+    "installation_instructions": "Clique instale e faça uma boa gestão"
+  }
+}

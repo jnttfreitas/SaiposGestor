@@ -1,0 +1,120 @@
+/* assets/styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f5f7;
+  color: #3c3f42;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+h1 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #2d9cdb;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.ticket-counts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-size: 0.8em;
+  color: #7d899c;
+}
+
+.ticket-counts p {
+  margin: 0;
+  font-weight: bold;
+  color: #3c3f42;
+}
+
+.ticket-config label {
+  font-size: 0.85em;
+  color: #5f6368;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.ticket-config select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  font-size: 0.8em;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background-color: #f9fafb;
+  color: #3c3f42;
+  outline: none;
+}
+
+.ticket-config select:focus {
+  border-color: #2d9cdb;
+  background-color: #fff;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#reloadButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#reloadButton img {
+  width: 20px;
+  height: 20px;
+}
+
+#assignButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #2d9cdb;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#assignButton:hover {
+  background-color: #2380b6;
+}
+
+/* Animação de rotação para o botão de recarregar */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s ease-in-out;
+}
