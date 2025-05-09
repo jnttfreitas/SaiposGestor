@@ -8,11 +8,12 @@ O Zendesk é uma ferramenta robusta, mas apresenta limitações na gestão ágil
 
 ## Funcionalidades
 
-- Exibe na **Nav Bar** do Zendesk Support o iframe do app que tem em sua interface o número de **chats na fila** e o número de **chats com mais de 10 minutos na fila**.
-- Permite que o gestor atribua automaticamente a si todos os atendimentos que estão na fila há mais de 10 minutos.
+- Exibe na **Nav Bar** do Zendesk Support o iframe do app que tem em sua interface o número de **Tickets na fila** e o número de **Tickets com o tempo selecionado no filtro de fila**.
+- Permite que o gestor atribua automaticamente a si todos os atendimentos que estão na fila com o tempo em minutos que ele selecionar no filtro e aplicar.
 - O app insere automaticamente uma tag que foi definida do ambiente de configuração para ter um controle de relatorio das atuações da supervisão.
 - O app também permite configurar uma mensagem de observação interna nos tickets que forem atribuidos ao supervidor para possiveis analises.
 - Inclui na sua interface do **iframe** campos onde o gestor pode tabular e classificar os tickets.
+- Tem em sua interface também um campo para uma tag opcional para poder melhorar o controlde de retatórios de impactos de incidentes.
 - Caso um chat esteja ativo, o gestor pode devolvê-lo à fila. Caso um chat esteja inativo por 10 minutos, o gestor deve encerrá-lo por abandono.
 
 Essa abordagem facilita o controle da fila e melhora a eficiência do atendimento ao cliente.
@@ -62,6 +63,9 @@ Para instalar o **Saipos Gestor App** no Zendesk Support:
 3. No Zendesk Support, acesse **Admin Center** > **Aplicativos e integrações** > **Aplicativos do Zendesk Support**.
 4. Clique em **Carregar aplicativo privado**.
 5. Envie o arquivo `.zip` e siga as instruções na tela para configura-lo.
+6. Configure a utilização conforme o modelo de configuração: ![(configsZendesk.png)](configsZendesk.png)
+7. No campo Tags das configurações pode se usar mais de uma tag é so separalas com um espaço e quando a tag possuir duas palavras separalas com underline 
+Exemplo:[saipos_gestor fila teste]  Neste caso seriam inseridas no ticket três tags uma de saipos_gestor fila e teste.
 
 ## Uso
 
@@ -72,7 +76,7 @@ Para instalar o **Saipos Gestor App** no Zendesk Support:
 
 ## Versão
 
-![Static Badge](https://img.shields.io/badge/Version-SaiposGestor_2.0.0-2d9cdb)
+![Static Badge](https://img.shields.io/badge/Version-SaiposGestor_3.0.1-2d9cdb)
 
 ![Static Badge](https://img.shields.io/badge/%C2%A9Copyright-Saipos_Software_S.A-2d9cdb)
 

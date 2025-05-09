@@ -13,8 +13,28 @@
         <!-- Contadores de Tickets -->
         <div class="ticket-counts">
             <p>Total de Tickets na Fila: <span id="totalTickets">0</span></p>
-            <p>Tickets há mais de 10 min: <span id="waitingTickets">0</span></p>
+            <p>Tickets há mais de <span id="selectedFilterTime">10</span> min: <span id="waitingTickets">0</span></p>
         </div>
+
+        <!-- Filtro de tempo -->
+        <div class="filter-container">
+            <label for="filterTime">Filtrar tickets há mais de:</label>
+            <div class="filter-row">
+                <select id="filterTime">
+                    <option value="2">2 minutos</option>
+                    <option value="3">3 minutos</option>
+                    <option value="4">4 minutos</option>
+                    <option value="5">5 minutos</option>
+                    <option value="6">6 minutos</option>
+                    <option value="7">7 minutos</option>
+                    <option value="8">8 minutos</option>
+                    <option value="9">9 minutos</option>
+                    <option value="10" selected>10 minutos</option>
+                </select>
+                <button id="applyFilterButton">▶</button>
+            </div>
+        </div>
+        
 
         <!-- Seções de Configuração -->
         <div class="ticket-config">
@@ -30,27 +50,35 @@
             <label for="ticketForm">Formulário do Ticket:</label>
             <select id="ticketForm">
                 <option value="">Selecione o formulário</option>
-                <!-- As opções serão carregadas dinamicamente -->
             </select>
 
             <label for="contactReason">Motivo de Contato:</label>
             <select id="contactReason">
                 <option value="">Selecione o motivo</option>
-                <!-- As opções serão carregadas dinamicamente -->
             </select>
 
             <label for="solutionReason">Motivo de Solução:</label>
             <select id="solutionReason">
                 <option value="">Selecione o motivo</option>
-                <!-- As opções serão carregadas dinamicamente -->
             </select>
+
+            <label for="additionalTag">Tag Adicional:</label>
+            <input type="text" id="additionalTag" placeholder="Tag Adicional">
+            
+
         </div>
 
         <!-- Botões de Ação -->
         <div class="action-buttons">
           <button id="reloadButton">
             <img src="reload-icon.svg" alt="Recarregar"></button>
-            <button id="assignButton">Atribuir Tickets ao Gestor</button>
+            <!-- Iframe oculto para exibir a animação -->
+            <iframe id="animationFrame" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; background: #ffff; z-index: 9999;"></iframe>
+          
+
+          <button id="assignButton">Atribuir Tickets ao Gestor</button>
+          <!-- Iframe oculto para exibir a animação -->
+            <iframe id="animationFrame" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; border: none; background: white; z-index: 9999;"></iframe>
         </div>
     </div>
 
