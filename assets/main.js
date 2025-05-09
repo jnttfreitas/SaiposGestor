@@ -1,6 +1,6 @@
 // ZAF SDK Inicialização Framework ZCLI
 const client = ZAFClient.init();
-client.invoke('resize', { width: '100%', height: '480px' }); // Ajuste da altura para acomodar todos os elementos
+client.invoke('resize', { width: '100%', height: '600px' }); // Ajuste da altura para acomodar todos os elementos
 
 // IDs dos campos personalizados
 const CONTACT_REASON_FIELD_ID = "19911967728916";
@@ -56,6 +56,11 @@ async function atualizarContagens() {
         console.error("ViewID não está definido. Verifique as configurações.");
         return;
     }
+
+    const filtroMinutos = parseInt(document.getElementById('filterTime').value, 10); // Obtém o tempo selecionado
+    document.getElementById('selectedFilterTime').textContent = filtroMinutos; // Atualiza o span no HTML
+    console.log(`Aplicando filtro para tickets há mais de ${filtroMinutos} minutos`);
+
     try {
         const response = await client.request(`/api/v2/views/${ViewID}/count.json`);
         if (response?.view_count?.value !== undefined) {
@@ -66,15 +71,40 @@ async function atualizarContagens() {
 
         const ticketsResponse = await client.request(`/api/v2/views/${ViewID}/tickets.json`);
         const waitingTickets = ticketsResponse.tickets.filter(ticket => {
-            const createdAt = new Date(ticket.created_at);
-            const agora = new Date();
-            return ((agora - createdAt) / 60000) > 10 && ticket.status === 'new';
+            const createdAt = new Date(ticket.created_at); // Data de criação do ticket
+            const agora = new Date(); // Data atual
+
+            const diffMinutos = Math.floor((agora - createdAt) / 60000); // Diferença em minutos
+            
+            return diffMinutos >= filtroMinutos && ticket.status === 'new';
         });
+
+        console.log(`Tickets encontrados após filtro: ${waitingTickets.length}`, waitingTickets);
         document.getElementById("waitingTickets").textContent = waitingTickets.length;
     } catch (erro) {
         console.error("Erro ao atualizar contagens de tickets:", erro);
     }
 }
+
+// Adiciona evento ao botão "Aplicar Filtro"
+document.getElementById('applyFilterButton').addEventListener('click', atualizarContagens);
+
+// Garante que a contagem seja carregada ao iniciar
+document.addEventListener('DOMContentLoaded', () => {
+    client.metadata().then((metadata) => {
+        ({ ViewID, Tag, ObsInterna } = metadata.settings);
+
+        // Definições padrão
+        document.getElementById('ticketType').value = "question";
+        loadTicketForms();
+        loadCustomFieldOptions(CONTACT_REASON_FIELD_ID, 'contactReason', "atendimento__abandono_");
+        loadCustomFieldOptions(SOLUTION_REASON_FIELD_ID, 'solutionReason', "não_resolvido_abandono_de_chat");
+
+        atualizarContagens(); // Chama a função logo no início para garantir atualização
+    }).catch(error => {
+        console.error("Erro ao obter configurações do aplicativo:", error);
+    });
+});
 
 // Função para atribuir tickets e configurar os campos
 async function atribuirTickets() {
@@ -86,19 +116,27 @@ async function atribuirTickets() {
             return;
         }
 
+        const filtroMinutos = parseInt(document.getElementById('filterTime').value, 10);
         const ticketType = document.getElementById('ticketType').value;
         const ticketForm = document.getElementById('ticketForm').value;
         const contactReason = document.getElementById('contactReason').value;
         const solutionReason = document.getElementById('solutionReason').value;
+        const additionalTag = document.getElementById('additionalTag').value.trim(); // Nova tag opcional
 
         const ticketsResponse = await client.request(`/api/v2/views/${ViewID}/tickets.json`);
         const ticketsParaAtribuir = ticketsResponse.tickets.filter(ticket => {
             const createdAt = new Date(ticket.created_at);
             const agora = new Date();
-            return ((agora - createdAt) / 60000) > 10 && ticket.status === 'new';
+            const diffMinutos = Math.floor((agora - createdAt) / 60000);
+            return diffMinutos >= filtroMinutos && ticket.status === 'new';
         });
 
         for (const ticket of ticketsParaAtribuir) {
+            let tags = [...ticket.tags, Tag];
+            if (additionalTag) {
+                tags.push(additionalTag);
+            }
+
             await client.request({
                 url: `/api/v2/tickets/${ticket.id}.json`,
                 type: "PUT",
@@ -112,7 +150,7 @@ async function atribuirTickets() {
                             { id: SOLUTION_REASON_FIELD_ID, value: solutionReason || null }
                         ],
                         assignee_id: currentUser.id,
-                        tags: [...ticket.tags, Tag],
+                        tags: tags,
                         comment: {
                             body: ObsInterna || "",
                             public: false
@@ -120,27 +158,72 @@ async function atribuirTickets() {
                     }
                 })
             });
-            console.log(`Ticket ${ticket.id} atribuído e configurado.`);
+            console.log(`Ticket ${ticket.id} atribuído com tag adicional opcional ${additionalTag || "Nenhuma"}`);
         }
+
         atualizarContagens();
     } catch (erro) {
         console.error("Erro ao atribuir tickets:", erro);
     }
 }
 
+
 // Evento para botão de recarregar com animação
 document.getElementById('reloadButton').addEventListener('click', () => {
-  const reloadButton = document.getElementById('reloadButton');
-  reloadButton.classList.add('spin-animation');
+    const animationFrame = document.getElementById('animationFrame');
   
-  // Remove a classe de animação após 1 segundo (tempo da animação)
-  setTimeout(() => reloadButton.classList.remove('spin-animation'), 1000);
+    // Mostrar o iframe
+    animationFrame.style.display = 'block';
   
-  location.reload();
-});
+    // Carregar a animação dentro do iframe
+    animationFrame.srcdoc = `
+      <html>
+        <head>
+          <style>
+            body { margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; background: white; }
+            gif { width: 80%; height: 80%; object-fit: contain; }
+          </style>
+        </head>
+        <body>
+          <img src="allen_animation.gif" />
+        </body>
+      </html>
+    `;
+  
+    // Recarregar após a duração do vídeo (ajuste o tempo conforme necessário)
+    setTimeout(() => location.reload(), 3000);
+  });
 
 // Evento para botão de atribuição de tickets
-document.getElementById("assignButton").addEventListener("click", atribuirTickets);
+document.getElementById('assignButton').addEventListener('click', () => {
+    const animationFrame = document.getElementById('animationFrame');
+  
+    // Mostrar o iframe
+    animationFrame.style.display = 'block';
+  
+    // Carregar a animação dentro do iframe
+    animationFrame.srcdoc = `
+      <html>
+        <head>
+          <style>
+            body { margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; background: white; }
+            img { width: 80%; height: 80%; object-fit: contain; }
+          </style>
+        </head>
+        <body>
+          <img src="allen_animation.gif" />
+        </body>
+      </html>
+    `;
+
+    // Chamar a função de atribuir tickets imediatamente
+    atribuirTickets();
+
+    // Manter a animação visível por 3 segundos antes de esconder
+    setTimeout(() => {
+        animationFrame.style.display = 'none';
+    }, 3000);
+});
 
 // Inicializa o carregamento de listas suspensas e contagens ao carregar o app
 document.addEventListener('DOMContentLoaded', () => {

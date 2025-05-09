@@ -29,6 +29,68 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Container para o título do filtro */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+/* Mantém o título acima */
+.filter-container label {
+  font-size: 0.85em;
+  color: #5f6368;
+  font-weight: bold;
+}
+
+/* Linha do seletor + botão "Aplicar Filtro" */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Ajusta o tamanho do seletor */
+#filterTime {
+  flex-grow: 1; /* Ocupa o espaço disponível */
+  padding: 8px;
+  font-size: 0.85em;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background-color: #f9fafb;
+  color: #3c3f42;
+  outline: none;
+}
+
+/* Ajuste do botão "Aplicar Filtro" para ficar ao lado */
+#applyFilterButton {
+  width: 40px; /* Define um tamanho fixo para o botão */
+  height: 32px; /* Mantém alinhado com o seletor */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d9cdb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#applyFilterButton:hover {
+  background-color: #2380b6;
+}
+
+/* Ajuste do tamanho do ícone dentro do botão */
+#applyFilterButton img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Contagem de tickets */
 .ticket-counts {
   display: flex;
   flex-direction: column;
@@ -44,11 +106,28 @@ h1 {
   color: #3c3f42;
 }
 
+/* Configuração dos tickets */
 .ticket-config label {
   font-size: 0.85em;
   color: #5f6368;
   margin-bottom: 5px;
   display: block;
+}
+
+.ticket-config input[type="text"] {
+  width: 95%;
+  padding: 8px;
+  margin-bottom: 15px;
+  font-size: 0.8em;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background-color: #f9fafb;
+  color: #3c3f42;
+  outline: none;
+}
+.ticket-config input[type="text"]:focus {
+  border-color: #2d9cdb;
+  background-color: #fff;
 }
 
 .ticket-config select {
@@ -68,6 +147,7 @@ h1 {
   background-color: #fff;
 }
 
+/* Botões de ação */
 .action-buttons {
   display: flex;
   justify-content: space-between;
